@@ -19,7 +19,39 @@ Containerisation
         anderen
 -   Container sind in der Regel wenige Megabyte groß
     -   Benötigen damit deutlich weniger Speicher als Virtual Machines
+    -   Es gibt auch deutlich größere, einige R Container sind oft 1
+        Gigabyte oder größer
 -   Führende Containerisation Software: Docker
+
+Quelle:  
+[What is a
+Container?](https://www.docker.com/resources/what-container)  
+[How Docker Helps Development Teams](https://www.docker.com/use-cases)
+
+Docker Alternativen
+-------------------
+
+-   rkt von CoreOS
+    -   Rocket Ausgesprochen
+    -   Stärkster Docker Konkurrent
+    -   Vorstellung im Jare 2014, Veröffentlicht 2016
+    -   Entwickelt weil die Ziele des Unternehmens andere andere sind
+        als von Docker
+    -   Punktet mit Sicherheitsfeatures
+-   LXC
+    -   Set aus Tools, Templates, Bibliotheken und Language Bindings
+    -   Ermöglicht zugriff auf die Native Container Funktionalität des
+        Linux Kernels
+-   LXD
+    -   Nachfolger von LXC
+    -   Kann docker auch Ergänzen
+-   Linux VServer, runC und viele andere
+
+Quelle:  
+[Alternativen zu Docker: Container-Plattform im
+Überblick](https://www.ionos.de/digitalguide/server/knowhow/docker-alternativen-im-ueberblick/)
+[App-Container: 5 professionelle Docker-Alternativen im
+Überblick](https://t3n.de/news/docker-alternativen-container-783741/)
 
 Docker — Meta Info
 ------------------
@@ -37,6 +69,11 @@ Docker — Meta Info
     -   OCI - Open Container Initiative
 -   2017 Spendete Docker das Containerd Project an die CNCF
     -   CNCF - Cloud Native Computing Foundation
+
+Quelle:  
+[What is a
+Container?](https://www.docker.com/resources/what-container)  
+[How Docker Helps Development Teams](https://www.docker.com/use-cases)
 
 ### Docker
 
@@ -59,6 +96,11 @@ Docker — Meta Info
     -   ML
 -   Sharing von Containern über Dockerhub
 
+Quelle:  
+[What is a
+Container?](https://www.docker.com/resources/what-container)  
+[How Docker Helps Development Teams](https://www.docker.com/use-cases)
+
 ### Docker Container Images & Container
 
 -   Ein Docker Container Image ist eine kleine, alleinstehende und
@@ -73,6 +115,11 @@ Docker — Meta Info
         kein eigenes Os und sparen daher Server und Lizenz Kosten
     -   Sicher - Docker Container sind voneinander strikt Isoliert
 
+Quelle:  
+[What is a
+Container?](https://www.docker.com/resources/what-container)  
+[How Docker Helps Development Teams](https://www.docker.com/use-cases)
+
 ### Dockerhub
 
 -   Docker Hub ist eine Plattform zum Teilen von Container Images
@@ -84,6 +131,9 @@ Docker — Meta Info
 -   Automatisierte Erstellung von Container Images (Webhooks)
     -   Z.b. mit Github, bei jedem neuen Commit wird ein neues Docker
         Image Online generiert
+
+Quelle:  
+[Docker Hub](https://hub.docker.com/)
 
 Docker — Umsetzung
 ------------------
@@ -129,8 +179,7 @@ Docker — Umsetzung
     # Copy the rest of your app's source code from your host to your image filesystem.
     COPY . .
 
-Quelle:
-<a href="https://docs.docker.com/get-started/part2/" class="uri">https://docs.docker.com/get-started/part2/</a>
+Quelle: [Get Started](https://docs.docker.com/get-started/part2/)
 
 ### Beispiel Dockerfile Erklärung
 
@@ -163,6 +212,10 @@ Führt Start argumente aus.
     COPY . .
 
 Kopiert das restliche Projekt
+
+Quelle:  
+[Dockerfile
+reference](https://docs.docker.com/engine/reference/builder/)
 
 ### Docker Build
 
@@ -199,6 +252,10 @@ Gebaut mit lokalem Dockerfile über PATH
 
 Gebaut mit Github Repository über URL
 
+Quelle:  
+[docker
+build](https://docs.docker.com/engine/reference/commandline/build/)
+
 ### Docker Run
 
 -   Format:
@@ -212,9 +269,27 @@ Gebaut mit Github Repository über URL
     zu Überschreiben
     -   Ebenso Default Docker Variablen können so Überschrieben werden
     -   Wichtige Parameter:
+        -   -a Spezifiziert woran Docker das Container bindet
+            -   STDIN, STDOUT und/oder STDERR
+            -   Default sind STDIN und STDERR
         -   -d für Detached, Lässt den Container im Hintergrund laufen
         -   -p für Port, Spezifiziert einen Port für den Container
+        -   -i, lässt den Stabdard Input (STDIN) geöffnet, auch wenn der
+            Prozess detached ist
+        -   -t Legt eine Pseudo TTY an.
+            -   tty ist genutzt um den Standard Output eines Terminals
+                zu überprüfen. -t erstellt entsprechend einen Pseudo
+                Standard Output
+    -   Für Interaktive Prozesse (Im Terminal zum Beispiel) müssen -i
+        und -t (auch -it möglich) zusammen genutzt werden
 -   Alternativ: Über Docker Desktop Starten
+
+Beispiel Mit Tags:
+
+     docker run -a stdin -a stdout -i -t IMAGE
+
+Quelle:  
+[Docker run reference](https://docs.docker.com/engine/reference/run/)
 
 ### Docker rm
 
@@ -231,7 +306,10 @@ Gebaut mit Github Repository über URL
 
      docker rm $(docker ps -a -q)
 
-### Docker rm
+Quelle:  
+[docker rm](https://docs.docker.com/engine/reference/commandline/rm/)
+
+### Docker prune
 
 -   Format:
 
@@ -241,8 +319,34 @@ Gebaut mit Github Repository über URL
 
 -   Entfernt alle ungenutzten Container & Images
 
+Quelle:  
+[docker system
+prune](https://docs.docker.com/engine/reference/commandline/system_prune/)
+
+Docker Compose
+--------------
+
+-   Ist ein Tool um Anwendungen die aus mehreren Docker Containern
+    bestehen zu Verwenden.
+    -   Beispiel: Eigenes Projekt auf Node Basis mit einer Zusaätzlichen
+        MongoDB. Node und MongoDB sind jeweil in eigenen Containern
+        laufen aber mit docker compose zusammen
+-   Vordefinierung der gesamt anwendung in der Docker-compose.yml
+-   Starten der anwendung mit
+
+<!-- -->
+
+     docker-compose up [options] [--scale SERVICE=NUM...] [SERVICE...]
+
+-   Genaueres Folgt in @Svub1 Vortag
+
+[Overview of Docker Compose](https://docs.docker.com/compose/)
+
 Binder
 ======
+
+Mybinder
+--------
 
 -   Binder Project ist eine offene Comunity, welche es möglich macht,
     teilbare, interaktive und reproduzierbare umgebungen zu erschaffen
@@ -261,11 +365,21 @@ Binder
 -   Mybinder:
     <a href="https://mybinder.org/" class="uri">https://mybinder.org/</a>
 
+Quelle:  
+[binder](https://jupyter.org/binder)  
+[Get started with
+Binder](https://mybinder.readthedocs.io/en/latest/introduction.html)
+
 repo2docker
 -----------
 
 -   repo2docker ist ein tool, welches code repositories in Docker Images
     umwandelt
+    -   repo2docker stellt direkt eine Zugriffs Möglichkeit via Jupyter
+        zu Verfügung
+        -   Es wird ein Link mit einem Token in der Befehlszeile zu
+            Verfügung gestellt, womit der Zugriff ermöglicht wird
+        -   Im Hintergrund läuft das Docker Image in einem Container
 -   Es definiert die “Reproducible Execution Environment Specification”
     (REES) welche genutzt wird um regeln für die Konvertierung zu docker
     images definieren
@@ -274,16 +388,23 @@ repo2docker
     -   Soll ebenso von Menschen Lesbar und umsetzbar sein
 -   Frei downloadbar und anwendbar
 
-Quellen:
-========
+Quelle:  
+[The Reproducible Execution Environment
+Specification](https://repo2docker.readthedocs.io/en/latest/specification.html)
 
--   <a href="https://www.docker.com/resources/what-container" class="uri">https://www.docker.com/resources/what-container</a>
--   <a href="https://www.docker.com/use-cases" class="uri">https://www.docker.com/use-cases</a>
--   <a href="https://romannurik.github.io/SlidesCodeHighlighter/" class="uri">https://romannurik.github.io/SlidesCodeHighlighter/</a>
--   <a href="https://docs.docker.com/engine/reference/builder/" class="uri">https://docs.docker.com/engine/reference/builder/</a>
--   <a href="https://docs.docker.com/engine/reference/commandline/build/" class="uri">https://docs.docker.com/engine/reference/commandline/build/</a>
--   <a href="https://docs.docker.com/engine/reference/run/" class="uri">https://docs.docker.com/engine/reference/run/</a>
--   <a href="https://docs.docker.com/engine/reference/commandline/rm/" class="uri">https://docs.docker.com/engine/reference/commandline/rm/</a>
--   <a href="https://mybinder.readthedocs.io/en/latest/introduction.html" class="uri">https://mybinder.readthedocs.io/en/latest/introduction.html</a>
--   <a href="https://jupyter.org/binder" class="uri">https://jupyter.org/binder</a>
--   <a href="https://repo2docker.readthedocs.io/en/latest/specification.html" class="uri">https://repo2docker.readthedocs.io/en/latest/specification.html</a>
+Kubernetes
+==========
+
+-   Erfunden von Google und als 2014 Open Source zur Verfügung gestellt
+-   Ist eine portable, erweiterbare Open-Source-Plattform zur Verwaltung
+    von containerisierten Arbeitslasten und Services
+-   Nutzen von Kubernetes
+    -   Containerplattform
+    -   Microservices-Plattform
+    -   portable Cloud-Plattform
+-   Ist eine containerzentrierte Managementum
+    -   Koordiniert Computer-, Netzwerk und Speicherinfrastruktur
+
+Quelle:  
+[Was ist
+Kubernetes?](https://kubernetes.io/de/docs/concepts/overview/what-is-kubernetes/)
