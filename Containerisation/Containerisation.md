@@ -380,6 +380,9 @@ repo2docker
         -   Es wird ein Link mit einem Token in der Befehlszeile zu
             Verfügung gestellt, womit der Zugriff ermöglicht wird
         -   Im Hintergrund läuft das Docker Image in einem Container
+        -   Direkter Zugrifff auf Datein möglich
+            -   Ebenso das ausführen von Code (Segmenten) in Jupyter
+                Notebooks
 -   Es definiert die “Reproducible Execution Environment Specification”
     (REES) welche genutzt wird um regeln für die Konvertierung zu docker
     images definieren
@@ -387,6 +390,8 @@ repo2docker
         erleichtern
     -   Soll ebenso von Menschen Lesbar und umsetzbar sein
 -   Frei downloadbar und anwendbar
+-   Leicht Auszuprobieren:
+    [repo2docker](https://github.com/jupyterhub/repo2docker)
 
 Quelle:  
 [The Reproducible Execution Environment
