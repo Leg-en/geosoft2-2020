@@ -8,14 +8,14 @@ Containerisation
 
 -   Software verpackt in standardisierte Einheiten für Entwicklung,
     Einsatz und Verteilung
-    -   Eine solche einheit ist ein Container
--   Ein Container ist eine Softwareeinheit in das der gesamte Code und
+    -   Eine solche Einheit ist ein Container
+-   Ein Container ist eine Softwareeinheit, in das der gesamte Code und
     alle Abhängigkeiten gepackt werden
 -   Software läuft so schnell und zuverlässig auch auf anderen Computer
     Systemen
 -   Mehrere Container können auf einer Maschine laufen und teilen sich
     den gleichen OS kernel
-    -   Jeder Container läuft trotzdem Isoliert und unabhängig von den
+    -   Jeder Container läuft trotzdem isoliert und unabhängig von den
         anderen
 -   Container sind in der Regel wenige Megabyte groß
     -   Benötigen damit deutlich weniger Speicher als Virtual Machines
@@ -34,14 +34,14 @@ Docker Alternativen
 -   rkt von CoreOS
     -   Rocket Ausgesprochen
     -   Stärkster Docker Konkurrent
-    -   Vorstellung im Jare 2014, Veröffentlicht 2016
-    -   Entwickelt weil die Ziele des Unternehmens andere andere sind
-        als von Docker
+    -   Vorstellung im Jahre 2014, Veröffentlicht 2016
+    -   Entwickelt, weil die Ziele des Unternehmens andere sind als von
+        Docker
     -   Punktet mit Sicherheitsfeatures
 -   LXC
     -   Set aus Tools, Templates, Bibliotheken und Language Bindings
     -   Ermöglicht zugriff auf die Native Container Funktionalität des
-        Linux Kernels
+        Linuxkernels
 -   LXD
     -   Nachfolger von LXC
     -   Kann docker auch Ergänzen
@@ -58,16 +58,17 @@ Docker — Meta Info
 
 ### Docker Geschichte
 
--   2013 ist Docker Gestartet als Open Source Docker Engine
--   Es verbesserte bereits Existierende Konzepte von Containern in der
+-   2013 ist Docker gestartet als Open Source Docker Engine
+-   Es verbesserte bereits existierende Konzepte von Containern in der
     Linux welt
     -   Primitives bekannt als cgroups und namespaces
--   Durch den Erfolg, folgte eine Partnerschaft mit Microsoft
-    -   Docker Verfügbar Windows Server bzw, Docker Windows
--   2015 Spendete Docker die Container Spezifikation an die OCI um einen
-    Standardisiertes wachstum des Container Ökosystems zu ermöglichen
+-   Durch den Erfolg folgte eine Partnerschaft mit Microsoft
+    -   Docker verfügbar für Windows Server bzw., Docker Windows
+-   2015 Spendete Docker die Container Spezifikation an die OCI, um
+    einen standardisiertes Wachstum des Container Ökosystems zu
+    ermöglichen
     -   OCI - Open Container Initiative
--   2017 Spendete Docker das Containerd Project an die CNCF
+-   2017 Spendete Docker das Container Project an die CNCF
     -   CNCF - Cloud Native Computing Foundation
 
 Quelle:  
@@ -87,8 +88,8 @@ Container?](https://www.docker.com/resources/what-container)
     -   Direkte Verbindung zu Azure möglich (Beta)
     -   Verfügbar für MacOS und Windows
 -   Erlaubt verbesserte Entwicklung
-    -   “It works on my machine!” — Unabhängigkeit von der Entwickungs /
-        Laufzeitsumgebung
+    -   “It works on my machine!” — Unabhängigkeit von der Entwicklungs-
+        / Laufzeitsumgebung
     -   Schnelles aufsetzen von Entwicklungsumgebungen für neue
         Entwickler
     -   Geeignet für Microservice Architektur
@@ -104,16 +105,16 @@ Container?](https://www.docker.com/resources/what-container)
 ### Docker Container Images & Container
 
 -   Ein Docker Container Image ist eine kleine, alleinstehende und
-    ausführbare datei, welche alles beinhaltet was sie braucht: Code,
+    ausführbare Datei, welche alles beinhaltet, was sie braucht: Code,
     Laufzeitumgebung, System Tools, System Bibliotheken und
     Einstellungen
--   Ein Docker Container Image wird zur laufzeit zu einem Docker
+-   Ein Docker Container Image wird zur Laufzeit zu einem Docker
     Container
--   Container die auf der Docker Engine Laufen sind:
-    -   Standardisiert - Bilden de Facto, den Industrie standard
-    -   “Lightweight” - Sehr Klein und Effizient. Anwendungen benötigen
+-   Container, die auf der Docker Engine laufen, sind:
+    -   Standardisiert - Bilden den de facto Industrie standard
+    -   “Lightweight” - sehr klein und effizient. Anwendungen benötigen
         kein eigenes Os und sparen daher Server und Lizenz Kosten
-    -   Sicher - Docker Container sind voneinander strikt Isoliert
+    -   Sicher - Docker Container sind voneinander strikt isoliert
 
 Quelle:  
 [What is a
@@ -129,8 +130,8 @@ Container?](https://www.docker.com/resources/what-container)
     -   Downloaden & Starten
 -   Rechte Management — Freigeben für alle oder nur für das eigene Team
 -   Automatisierte Erstellung von Container Images (Webhooks)
-    -   Z.b. mit Github, bei jedem neuen Commit wird ein neues Docker
-        Image Online generiert
+    -   Z. B. mit Github, bei jedem neuen Commit wird ein neues Docker
+        Image online generiert
 
 Quelle:  
 [Docker Hub](https://hub.docker.com/)
@@ -141,7 +142,7 @@ Docker — Umsetzung
 ### Containerisation mit Docker
 
 -   Voraussetzungen
-    -   Docker Desktop Installiert & Konfiguriert
+    -   Docker Desktop installiert & konfiguriert
     -   Projekt zur Containerisation
 -   Dockerfile erstellen
 -   Docker Build
@@ -149,7 +150,7 @@ Docker — Umsetzung
 
 ### Dockerfile
 
--   Enthält anweisungen für den Container
+-   Enthält Anweisungen für den Container
 -   Aufbau:
 
 <!-- -->
@@ -157,8 +158,8 @@ Docker — Umsetzung
     # Comment
     INSTRUCTION arguments
 
--   Nicht Case Sensitive, jedoch ist die Konvention das die Aufgabe groß
-    ist und das Argument klein
+-   Nicht Case Sensitive jedoch ist die Konvention, dass die Aufgabe
+    groß ist und das Argument klein
 -   Kommentare mit \#
 -   Abfolge von Schritten
 
@@ -185,33 +186,33 @@ Quelle: [Get Started](https://docs.docker.com/get-started/part2/)
 
     FROM node:current-slim
 
-Bezieht das Offizielle Node Image als Ausgangs Image
+Bezieht das offizielle Node Image als Ausgangs Image .
 
     WORKDIR /usr/src/app
 
-Setzt das Arbeitsverzeichnis, Alle folgenden Aktivitäten gehen hiervon
-aus
+Setzt das Arbeitsverzeichnis. Alle folgenden Aktivitäten gehen hiervon
+aus.
 
     COPY package.json .
 
-Kopiert die Package JSON (Enthält auflistung aller Node Modules)
+Kopiert die Package JSON (Enthält auflistung aller Node Modules).
 
     COPY package.json .
 
-Führt npm install aus. Installiert Entsprechend den Server
+Führt npm install aus. Installiert entsprechend den Server.
 
     EXPOSE 8080
 
-Expose weist docker daraufhin, dass der Server auf dem Port 8080
-reagiert. Entsprechend wird der Port freigegeben
+Expose weist Docker daraufhin, dass der Server auf dem Port 8080
+reagiert. Entsprechend wird der Port freigegeben.
 
     CMD [ "npm", "start" ]
 
-Führt Start argumente aus.
+Führt Start Argumente aus.
 
     COPY . .
 
-Kopiert das restliche Projekt
+Kopiert das restliche Projekt.
 
 Quelle:  
 [Dockerfile
@@ -231,8 +232,8 @@ reference](https://docs.docker.com/engine/reference/builder/)
     -   Git Repositories
     -   pre-packaged Tarball Contexts
     -   Text Files
--   Zusätzliche Argumente Möglich
-    -   Empfehlenswert:
+-   Zusätzliche Argumente möglich
+    -   empfehlenswert:
 
 <!-- -->
 
@@ -264,24 +265,24 @@ build](https://docs.docker.com/engine/reference/commandline/build/)
 
      docker run [OPTIONS] IMAGE[:TAG|@DIGEST] [COMMAND] [ARG...]
 
--   Es wird ein Image benötigt um daraus ein Container zu erstellen
--   Der Options Operator ermöglicht es die Default werte des Entwicklers
-    zu Überschreiben
-    -   Ebenso Default Docker Variablen können so Überschrieben werden
+-   Es wird ein Image benötigt, um daraus ein Container zu erstellen
+-   Der Optionsoperator ermöglicht es die Default werte des Entwicklers
+    zu überschreiben
+    -   Ebenso Default Docker Variablen können so überschrieben werden
     -   Wichtige Parameter:
-        -   -a Spezifiziert woran Docker das Container bindet
+        -   -a spezifiziert woran Docker das Container bindet
             -   STDIN, STDOUT und/oder STDERR
             -   Default sind STDIN und STDERR
-        -   -d für Detached, Lässt den Container im Hintergrund laufen
-        -   -p für Port, Spezifiziert einen Port für den Container
-        -   -i, lässt den Stabdard Input (STDIN) geöffnet, auch wenn der
+        -   -d für Detached, lässt den Container im Hintergrund laufen
+        -   -p für Port spezifiziert einen Port für den Container
+        -   -i, lässt den Standard Input (STDIN) geöffnet, auch wenn der
             Prozess detached ist
-        -   -t Legt eine Pseudo TTY an.
-            -   tty ist genutzt um den Standard Output eines Terminals
-                zu überprüfen. -t erstellt entsprechend einen Pseudo
+        -   -t Legt eine pseudo TTY an.
+            -   tty ist genutzt, um den Standardoutput eines Terminals
+                zu überprüfen. -t erstellt entsprechend einen pseudo
                 Standard Output
-    -   Für Interaktive Prozesse (Im Terminal zum Beispiel) müssen -i
-        und -t (auch -it möglich) zusammen genutzt werden
+-   Für interaktive Prozesse (Im Terminal zum Beispiel) müssen - i und
+    -t (auch -it möglich) zusammen genutzt werden
 -   Alternativ: Über Docker Desktop Starten
 
 Beispiel Mit Tags:
@@ -299,7 +300,7 @@ Quelle:
 
      docker rm [OPTIONS] CONTAINER [CONTAINER...]
 
--   Entfernt einen oder mehrere container
+-   Entfernt einen oder mehrere Container
 -   Alle gestoppten Container Löschen:
 
 <!-- -->
@@ -348,19 +349,19 @@ Binder
 Mybinder
 --------
 
--   Binder Project ist eine offene Comunity, welche es möglich macht,
-    teilbare, interaktive und reproduzierbare umgebungen zu erschaffen
--   Ein Binder (oder Binder Ready Repository) ist ein Code Repository
+-   Binder Project ist eine offene Community, welche es möglich macht,
+    teilbare, interaktive und reproduzierbare Umgebungen zu erschaffen
+-   Ein Binder (oder Binder Ready Repository) ist ein Code Repository,
     welches:
-    -   Code oder Inhalte die Ausgeführt werden sollen (z.b. Jupyter
+    -   Code oder Inhalte die ausgeführt werden sollen (z. B. Jupyter
         Notebook, R Scripte)
     -   Konfigurationsdateien für die Umgebung
-        -   Binder benötigt diese um den code auszuführen
-        -   Werden im Root verzeichnis oder im binder/ verzeichnis
-            Platziert
--   BinderHUB ist eine Web Applikation welche solche umgebungen
+        -   Binder benötigt diese, um den Code auszuführen
+        -   Werden im Root Verzeichnis oder im Binder/ Verzeichnis
+            platziert
+-   BinderHUB ist eine Web Applikation welche solche Umgebungen
     erschafft
-    -   Dafür Nutzt es repo2docker um für jedes Repository ein eigenen
+    -   Dafür nutzt es repo2docker um für jedes Repository ein eigenen
         Container zu erstellen und JupyterHub für die Interaktivität
 -   Mybinder:
     <a href="https://mybinder.org/" class="uri">https://mybinder.org/</a>
@@ -373,25 +374,23 @@ Binder](https://mybinder.readthedocs.io/en/latest/introduction.html)
 repo2docker
 -----------
 
--   repo2docker ist ein tool, welches code repositories in Docker Images
+-   repo2docker ist ein Tool, welches code repositories in Docker Images
     umwandelt
-    -   repo2docker stellt direkt eine Zugriffs Möglichkeit via Jupyter
+    -   repo2docker stellt direkt eine Zugriffsmöglichkeit via Jupyter
         zu Verfügung
         -   Es wird ein Link mit einem Token in der Befehlszeile zu
             Verfügung gestellt, womit der Zugriff ermöglicht wird
         -   Im Hintergrund läuft das Docker Image in einem Container
-        -   Direkter Zugrifff auf Datein möglich
+        -   Direkter Zugriff auf Dateien möglich
             -   Ebenso das ausführen von Code (Segmenten) in Jupyter
                 Notebooks
 -   Es definiert die “Reproducible Execution Environment Specification”
-    (REES) welche genutzt wird um regeln für die Konvertierung zu docker
+    (REES) welche genutzt wird um Regeln für die Konvertierung zu docker
     images definieren
-    -   REES soll die Automatisierung von Computergestützten umgebungen
+    -   REES soll die Automatisierung von computergestützten Umgebungen
         erleichtern
-    -   Soll ebenso von Menschen Lesbar und umsetzbar sein
+    -   Soll ebenso von Menschen lesbar und umsetzbar sein
 -   Frei downloadbar und anwendbar
--   Leicht Auszuprobieren:
-    [repo2docker](https://github.com/jupyterhub/repo2docker)
 
 Quelle:  
 [The Reproducible Execution Environment
@@ -408,7 +407,7 @@ Kubernetes
     -   Microservices-Plattform
     -   portable Cloud-Plattform
 -   Ist eine containerzentrierte Managementum
-    -   Koordiniert Computer-, Netzwerk und Speicherinfrastruktur
+    -   koordiniert Computer-, Netzwerk und Speicherinfrastruktur
 
 Quelle:  
 [Was ist
